@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println(parenthesesCheck(")(())("));
         System.out.println(reverseInteger(1234));
+        System.out.println(encryptThis("Ready set go"));
     }
     // 1. parenthesesCheck
     public static boolean parenthesesCheck(String s) {
@@ -30,9 +31,35 @@ public class Main {
 
 
     // 3. encryptThis
-    public static String encryptThis(String input) {
-        return "";
+    public static String encryptWord(String input) {
+        char firstLetter = input.charAt(0);
+        int charCode = (int) firstLetter;
+        char secondCharacter = input.charAt(input.length()-1);
+        char lastCharacter = 'A';
+        if (input.length() > 1){
+            lastCharacter = input.charAt(1);
+
+        }
+        String encryptedWord;
+
+        if (input.length() > 2){
+            encryptedWord = charCode + "" + secondCharacter + "" + input.substring(2,input.length()-1) + "" + lastCharacter; 
+        }else if (input.length() > 1){
+            encryptedWord = charCode + "" + input.charAt(1);
+        }else{
+            encryptedWord = firstLetter + "";
+        }
+        return encryptedWord;
     }
+    public static String encryptThis(String input) {
+        String[] inputWords = input.split(" ");
+        String encryptedString = "";
+        for (int i = 0; i < inputWords.length; i++){
+            encryptedString += encryptWord(inputWords[i]) + " ";
+        }
+        return encryptedString;
+    }
+    
 
 
     // 4. decipherThis
